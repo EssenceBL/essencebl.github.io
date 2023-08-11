@@ -16,7 +16,7 @@ urllib3.disable_warnings()
 
 def getAvailableCourses() -> list[tuple[str, bool]]:
     '''
-    Return a dictionary containing the course code and whether it is offered in the year
+    Return a list of tuples containing the course code and whether it is offered in the year
     '''
     
     # The page containing the list of all HKU Math courses 
@@ -26,7 +26,7 @@ def getAvailableCourses() -> list[tuple[str, bool]]:
 
     courseTable = soup.find("div", class_="rte-img-content").find("table")
 
-    # A dictionary storing the course code and whether it is offered in the year
+    # A list storing the course code and whether it is offered in the year
     courseList = []
     
     for currCourse in courseTable.getText().split("\n")[2:-1]:
@@ -38,6 +38,7 @@ def getAvailableCourses() -> list[tuple[str, bool]]:
         courseList.append((currCourse[:8], isOffered))
 
     return courseList
+
 
 def getCourseInfo(courseCodeTag: str) -> dict:
     
@@ -56,13 +57,9 @@ def getCourseInfo(courseCodeTag: str) -> dict:
 
     courseCo_OrdinatorName = courseCo_OrdinatorInfo[0].strip()
     courseCo_OrdinatorEmail = courseCo_OrdinatorInfo[1].split("< ")[-1].strip().replace(" >", "")
-
     courseObjectives = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(5) > td").get_text().strip()
-
     courseContents = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(6) > td").get_text().strip().split("- ")[1:]
-
     coursePrereqs = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(8) > td").get_text().strip()
-
     courseReadings = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(18) > td").get_text().strip()
 
     courseDict = {
@@ -75,15 +72,9 @@ def getCourseInfo(courseCodeTag: str) -> dict:
 
     return courseDict
 
-    # print(courseCo_OrdinatorName, courseCo_OrdinatorEmail)
-    # print(courseCode, courseTitle)
-    # print(courseObjectives)
-    #print(courseContents)
-    # print(coursePrereqs)
-    # print(courseReadings)
-
 
 def main():
+    
     courses = getAvailableCourses()
 
     with open("courseInfo.csv", "w") as csvFile:
@@ -94,13 +85,12 @@ def main():
 
         csvWriter = csv.DictWriter(csvFile, fieldnames=field_names)
 
-        csvWriter.writeheader()
-
-        
+        csvWriter.writeheader()        
         for i in tqdm(range(len(courses)), desc="Progress"):
 
+            # Skip CC courses
             if "CC" in courses[i][0]: continue
-
+            # Skip courses not offered in the year
             if courses[i][1]:
                 csvWriter.writerow(getCourseInfo(courses[i][0]))
 
