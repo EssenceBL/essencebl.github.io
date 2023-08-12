@@ -1,5 +1,9 @@
 '''
 This is an UNSAFE web scraping script that collects information about the courses offered by the HKU Math Department
+
+@author : Shaheer Ziya
+@version : 1.0
+@date : 12 Aug, 2023
 '''
 
 import requests                     # Manage HTTP requests
