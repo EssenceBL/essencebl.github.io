@@ -12,6 +12,7 @@ import re                           # Regular Expressions
 import csv                          # Read and write CSV files
 from tqdm import tqdm               # Progress Bar
 import urllib3                      # Disable SSL Warnings
+import time                         # Sleep
 
 
 # This unfortunately needs to be done, since the HKU Math Department website uses expired certificates
@@ -97,6 +98,8 @@ def main():
             # Skip courses not offered in the year
             if courses[i][1]:
                 csvWriter.writerow(getCourseInfo(courses[i][0]))
+            else:
+                time.sleep(0.1)
 
         csvFile.close()
 
