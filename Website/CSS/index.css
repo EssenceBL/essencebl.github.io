@@ -1,3 +1,14 @@
+body {
+    font-family: 'League Spartan', sans-serif;
+    background-color: #3F2E3E;
+}
+
+p {
+    font-family: 'League Spartan', sans-serif;
+    color: #EFE1D1;
+    text-align: center;
+}
+
 .navBar {
     width: 90%;
     margin: 0 auto;
@@ -33,6 +44,7 @@ nav li {
     display: inline-block;
     margin-left: 70px;
     padding-top: 30px;
+    font-family: 'League Spartan', sans-serif;
 }
 
 nav > ul > li > a {
