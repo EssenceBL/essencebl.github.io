@@ -1,0 +1,47 @@
+.navBar {
+    width: 90%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #331D2C;
+
+}
+
+header::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.logo {
+    float: left;
+    padding: 10px 0;
+}
+
+nav {
+    float: right;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 30px;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+    color: #EFE1D1;
+    font-size: 20px;
+}
+
+
+
+
+
