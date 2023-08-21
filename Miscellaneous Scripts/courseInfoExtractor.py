@@ -2,8 +2,8 @@
 This is an UNSAFE web scraping script that collects information about the courses offered by the HKU Math Department
 
 @author : Shaheer Ziya
-@version : 1.0
-@date : 12 Aug, 2023
+@version : 1.2a
+@date : 21 Aug, 2023
 '''
 
 import requests                     # Manage HTTP requests
@@ -63,16 +63,68 @@ def getCourseInfo(courseCodeTag: str) -> dict:
     courseCo_OrdinatorName = courseCo_OrdinatorInfo[0].strip()
     courseCo_OrdinatorEmail = courseCo_OrdinatorInfo[1].split("< ")[-1].strip().replace(" >", "")
     courseObjectives = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(5) > td").get_text().strip()
-    courseContents = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(6) > td").get_text().strip().split("- ")[1:]
-    coursePrereqs = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(8) > td").get_text().strip()
-    courseReadings = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(18) > td").get_text().strip()
 
+    courseContents = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(6) > td").get_text().strip()
+    # Handle courseDetails depending on the style it's written in  
+    if "-" in courseContents:
+      courseContents = courseContents.split("- ")[1:]
+
+    else:
+      courseContents = [courseContents]
+
+  
+    coursePrereqs = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(8) > td").get_text().strip()
+
+  
+    courseAssesment = {}
+  
+    courseAssesmentRows = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(18) > td").find_all("tr")
+
+    weights = []
+    courseAssesmentWeights = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(18) > td").find_all("td", "right")
+
+    for cell in courseAssesmentWeights:
+      weights.append(cell.get_text())
+    
+    for row, w in zip(courseAssesmentRows[1:], weights, strict=True):
+      courseAssesment[row.find("td").get_text()] = w
+  
+
+    courseReadings = soup.find("table", class_="courseDetails").select_one("tr:nth-of-type(19) > td").get_text(separator="\n", strip=True).split("\n")
+
+    
+    # Remove abnormal characters from text
+    # Unicode normalize fails to work for some reason
+    tempCourseReads = []
+    for line in courseReadings:
+      tempCourseReads.append(
+        line.replace(u"\xa0\xa0", u" ")
+      )  
+    courseReadings = tempCourseReads
+
+
+    courseTeaching = {}
+    courseTeachingHours = soup.find("table", class_="pdf_courseDetails").find_all("td", "right")
+
+    hours = []
+    for cell in courseTeachingHours:
+      hours.append(cell.get_text())
+      
+    courseTeachingRows = soup.find("table", class_="pdf_courseDetails").find_all("tr")
+
+    for w, row in zip(hours, courseTeachingRows[1:]):
+      courseTeaching[row.find("td").get_text()] = w
+
+  
     courseDict = {
         "Course Code": courseCode, "Course Title": courseTitle,
-        "Course Co-Ordinator Name": courseCo_OrdinatorName, "Course Co-Ordinator Email": courseCo_OrdinatorEmail,
-        "Course Objectives": courseObjectives,
-        "Course Prerequisites": coursePrereqs, "Course Readings": courseReadings,
-        "Course Contents": courseContents
+        "Course Co-Ordinator Name": courseCo_OrdinatorName,
+        "Course Co-Ordinator Email": courseCo_OrdinatorEmail,
+        "Course Objectives": courseObjectives, "Course Contents": courseContents,
+        "Course Prerequisites": coursePrereqs, "Course Assesment" : courseAssesment, 
+        "Course Readings": courseReadings,
+        "Course Teaching & Learning Activities" : courseTeaching
+        
     }
 
     return courseDict
@@ -84,8 +136,11 @@ def main():
 
     with open("courseInfo.csv", "w") as csvFile:
         field_names = [
-            "Course Code", "Course Title", "Course Co-Ordinator Name", "Course Co-Ordinator Email",
-            "Course Objectives", "Course Prerequisites", "Course Readings", "Course Contents"
+            "Course Code", "Course Title", "Course Co-Ordinator Name",
+            "Course Co-Ordinator Email",
+            "Course Objectives", "Course Contents", "Course Prerequisites",
+            "Course Readings", "Course Assesment",
+            "Course Teaching & Learning Activities" 
         ]
 
         csvWriter = csv.DictWriter(csvFile, fieldnames=field_names)
