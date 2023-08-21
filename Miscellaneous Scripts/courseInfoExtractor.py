@@ -2,7 +2,7 @@
 This is an UNSAFE web scraping script that collects information about the courses offered by the HKU Math Department
 
 @author : Shaheer Ziya
-@version : 1.2a
+@version : 1.3
 @date : 21 Aug, 2023
 '''
 
