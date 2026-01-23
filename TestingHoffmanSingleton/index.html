@@ -4,32 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combinatorial Cards</title>
+	
+	
+	
     <style>
+	
+	
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
             background-color: #f5f5f5;
         }
-        .grid {
+		<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .item {
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        @media (min-width: 600px) {
+            .container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+        .item {
+                flex: 1;
+                margin: 0 10px;
+            }
+        }
+		
+		.grid {
             display: grid;
-            grid-template-columns: repeat(10, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 8px;
             margin-bottom: 20px;
         }
-		.middle-center{
-			position: relative;
-			padding: 16px
-		}
-		.middle-center::before{
-			content: "";
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 50%;
-			transform: translateX(-50%);
-			width: 1px;
-			background: #000;
-		}
 		.card {
             border: 1px solid #ddd;
             padding: 1px;
@@ -111,219 +138,245 @@
         <!-- <button id="show-all">Show All Neighbors</button> -->
     <!-- </div> -->
     
-    <div class="grid middle-center" id="card-grid">
-        <!-- Row 6 -->
-        <div class="card t-card" data-name="T347" data-numbers="3,4,7">
-            <img src="T347.svg" alt="T347">
-            <div class="name">T347</div>
-        </div>
-        <div class="card t-card" data-name="T457" data-numbers="4,5,7">
-            <img src="T457.svg" alt="T457">
-            <div class="name">T457</div>
-        </div>
-        <div class="card t-card" data-name="T156" data-numbers="1,5,6">
-            <img src="T156.svg" alt="T156">
-            <div class="name">T156</div>
-        </div>
-        <div class="card t-card" data-name="T126" data-numbers="1,2,6">
-            <img src="T126.svg" alt="T126">
-            <div class="name">T126</div>
-        </div>
-        <div class="card f-card" data-name="F137-267-346-124-235-156-457" data-lines="137,267,346,124,235,156,457">
-            <img src="F137-267-346-124-235-156-457.svg" alt="F137">
-            <div class="name">F137</div>
-        </div>
-        <!-- Row 1 -->
-        <div class="card f-card" data-name="F123-245-356-347-157-146-267" data-lines="123,245,356,347,157,146,267">
-            <img src="F123-245-356-347-157-146-267.svg" alt="F123">
-            <div class="name">F123</div>
-        </div>
-        <div class="card t-card" data-name="T123" data-numbers="1,2,3">
-            <img src="T123.svg" alt="T123">
-            <div class="name">T123</div>
-        </div>
-        <div class="card f-card" data-name="F156-123-367-345-257-246-147" data-lines="156,123,367,345,257,246,147">
-            <img src="F156-123-367-345-257-246-147.svg" alt="F156">
-            <div class="name">F156</div>
-        </div>
-        <div class="card t-card" data-name="T345" data-numbers="3,4,5">
-            <img src="T345.svg" alt="T345">
-            <div class="name">T345</div>
-        </div>
-        <div class="card t-card" data-name="T267" data-numbers="2,6,7">
-            <img src="T267.svg" alt="T267">
-            <div class="name">T267</div>
-        </div>
-        <!-- Row 2 -->
-        <div class="card t-card" data-name="T157" data-numbers="1,5,7">
-            <img src="T157.svg" alt="T157">
-            <div class="name">T157</div>
-        </div>
-        <div class="card t-card" data-name="T467" data-numbers="4,6,7">
-            <img src="T467.svg" alt="T467">
-            <div class="name">T467</div>
-        </div>
-        <div class="card t-card" data-name="T246" data-numbers="2,4,6">
-            <img src="T246.svg" alt="T246">
-            <div class="name">T246</div>
-        </div>
-        <div class="card f-card" data-name="F157-124-136-467-345-256-237" data-lines="157,124,136,467,345,256,237">
-            <img src="F157-124-136-467-345-256-237.svg" alt="F157">
-            <div class="name">F157</div>
-        </div>
-        <div class="card t-card" data-name="T135" data-numbers="1,3,5">
-            <img src="T135.svg" alt="T135">
-            <div class="name">T135</div>
-        </div>
-        <!-- Row 7 -->
-        <div class="card f-card" data-name="F124-257-236-456-135-167-347" data-lines="124,257,236,456,135,167,347">
-            <img src="F124-257-236-456-135-167-347.svg" alt="F124">
-            <div class="name">F124</div>
-        </div>
-        <div class="card t-card" data-name="T236" data-numbers="2,3,6">
-            <img src="T236.svg" alt="T236">
-            <div class="name">T236</div>
-        </div>
-        <div class="card f-card" data-name="F127-236-134-245-156-467-357" data-lines="127,236,134,245,156,467,357">
-            <img src="F127-236-134-245-156-467-357.svg" alt="F127">
-            <div class="name">F127</div>
-        </div>
-        <div class="card t-card" data-name="T357" data-numbers="3,5,7">
-            <img src="T357.svg" alt="T357">
-            <div class="name">T357</div>
-        </div>
-        <div class="card t-card" data-name="T124" data-numbers="1,2,4">
-            <img src="T124.svg" alt="T124">
-            <div class="name">T124</div>
-        </div>
-        <!-- Row 3 -->
-        <div class="card t-card" data-name="T146" data-numbers="1,4,6">
-            <img src="T146.svg" alt="T146">
-            <div class="name">T146</div>
-        </div>
-        <div class="card t-card" data-name="T567" data-numbers="5,6,7">
-            <img src="T567.svg" alt="T567">
-            <div class="name">T567</div>
-        </div>
-        <div class="card t-card" data-name="T257" data-numbers="2,5,7">
-            <img src="T257.svg" alt="T257">
-            <div class="name">T257</div>
-        </div>
-        <div class="card f-card" data-name="F146-125-345-247-567-236-137" data-lines="146,125,345,247,567,236,137">
-            <img src="F146-125-345-247-567-236-137.svg" alt="F146">
-            <div class="name">F146</div>
-        </div>
-        <div class="card t-card" data-name="T134" data-numbers="1,3,4">
-            <img src="T134.svg" alt="T134">
-            <div class="name">T134</div>
-        </div>
-        <!-- Row 8 -->
-        <div class="card t-card" data-name="T256" data-numbers="2,5,6">
-            <img src="T256.svg" alt="T256">
-            <div class="name">T256</div>
-        </div>
-        <div class="card f-card" data-name="F135-127-234-146-457-256-367" data-lines="135,127,234,146,457,256,367">
-            <img src="F135-127-234-146-457-256-367.svg" alt="F135">
-            <div class="name">F135</div>
-        </div>
-        <div class="card t-card" data-name="T234" data-numbers="2,3,4">
-            <img src="T234.svg" alt="T234">
-            <div class="name">T234</div>
-        </div>
-        <div class="card f-card" data-name="F145-126-137-234-356-467-257" data-lines="145,126,137,234,356,467,257">
-            <img src="F145-126-137-234-356-467-257.svg" alt="F145">
-            <div class="name">F145</div>
-        </div>
-        <div class="card t-card" data-name="T137" data-numbers="1,3,7">
-            <img src="T137.svg" alt="T137">
-            <div class="name">T137</div>
-        </div>
-        <!-- Row 4 -->
-        <div class="card t-card" data-name="T245" data-numbers="2,4,5">
-            <img src="T245.svg" alt="T245">
-            <div class="name">T245</div>
-        </div>
-        <div class="card f-card" data-name="F167-256-123-145-357-346-247" data-lines="167,256,123,145,357,346,247">
-            <img src="F167-256-123-145-357-346-247.svg" alt="F167">
-            <div class="name">F167</div>
-        </div>
-        <div class="card t-card" data-name="T367" data-numbers="3,6,7">
-            <img src="T367.svg" alt="T367">
-            <div class="name">T367</div>
-        </div>
-        <div class="card t-card" data-name="T167" data-numbers="1,6,7">
-            <img src="T167.svg" alt="T167">
-            <div class="name">T167</div>
-        </div>
-        <div class="card t-card" data-name="T145" data-numbers="1,4,5">
-            <img src="T145.svg" alt="T145">
-            <div class="name">T145</div>
-        </div>
-        <!-- Row 9 -->
-        <div class="card f-card" data-name="F136-235-347-246-145-567-127" data-lines="136,235,347,246,145,567,127">
-            <img src="F136-235-347-246-145-567-127.svg" alt="F136">
-            <div class="name">F136</div>
-        </div>
-        <div class="card t-card" data-name="T136" data-numbers="1,3,6">
-            <img src="T136.svg" alt="T136">
-            <div class="name">T136</div>
-        </div>
-        <div class="card t-card" data-name="T247" data-numbers="2,4,7">
-            <img src="T247.svg" alt="T247">
-            <div class="name">T247</div>
-        </div>
-        <div class="card f-card" data-name="F126-247-235-134-456-367-157" data-lines="126,247,235,134,456,367,157">
-            <img src="F126-247-235-134-456-367-157.svg" alt="F126">
-            <div class="name">F126</div>
-        </div>
-        <div class="card t-card" data-name="T235" data-numbers="2,3,5">
-            <img src="T235.svg" alt="T235">
-            <div class="name">T235</div>
-        </div>
-        <!-- Row 5 -->
-        <div class="card t-card" data-name="T356" data-numbers="3,5,6">
-            <img src="T356.svg" alt="T356">
-            <div class="name">T356</div>
-        </div>
-        <div class="card t-card" data-name="T456" data-numbers="4,5,6">
-            <img src="T456.svg" alt="T456">
-            <div class="name">T456</div>
-        </div>
-        <div class="card t-card" data-name="T147" data-numbers="1,4,7">
-            <img src="T147.svg" alt="T147">
-            <div class="name">T147</div>
-        </div>
-        <div class="card t-card" data-name="T127" data-numbers="1,2,7">
-            <img src="T127.svg" alt="T127">
-            <div class="name">T127</div>
-        </div>
-        <div class="card f-card" data-name="F125-234-357-147-456-136-267" data-lines="125,234,357,147,456,136,267">
-            <img src="F125-234-357-147-456-136-267.svg" alt="F125">
-            <div class="name">F125</div>
-        </div>
-        <!-- Row 10 -->
-        <div class="card t-card" data-name="T125" data-numbers="1,2,5">
-            <img src="T125.svg" alt="T125">
-            <div class="name">T125</div>
-        </div>
-        <div class="card f-card" data-name="F134-246-237-457-125-356-167" data-lines="134,246,237,457,125,356,167">
-            <img src="F134-246-237-457-125-356-167.svg" alt="F134">
-            <div class="name">F134</div>
-        </div>
-        <div class="card t-card" data-name="T237" data-numbers="2,3,7">
-            <img src="T237.svg" alt="T237">
-            <div class="name">T237</div>
-        </div>
-        <div class="card f-card" data-name="F147-237-135-346-245-126-567" data-lines="147,237,135,346,245,126,567">
-            <img src="F147-237-135-346-245-126-567.svg" alt="F147">
-            <div class="name">F147</div>
-        </div>
-        <div class="card t-card" data-name="T346" data-numbers="3,4,6">
-            <img src="T346.svg" alt="T346">
-            <div class="name">T346</div>
-        </div>
-        
-    </div>
+	
+	<div class="container">
+		
+		<div class="item">
+		
+			<div class="grid middle-center" id="card-grid">
+				<!-- Row 1 -->
+				<div class="card f-card" data-name="F123-245-356-347-157-146-267" data-lines="123,245,356,347,157,146,267">
+					<img src="F123-245-356-347-157-146-267.svg" alt="F123">
+					<div class="name">F123</div>
+				</div>
+				<div class="card t-card" data-name="T123" data-numbers="1,2,3">
+					<img src="T123.svg" alt="T123">
+					<div class="name">T123</div>
+				</div>
+				<div class="card f-card" data-name="F156-123-367-345-257-246-147" data-lines="156,123,367,345,257,246,147">
+					<img src="F156-123-367-345-257-246-147.svg" alt="F156">
+					<div class="name">F156</div>
+				</div>
+				<div class="card t-card" data-name="T345" data-numbers="3,4,5">
+					<img src="T345.svg" alt="T345">
+					<div class="name">T345</div>
+				</div>
+				<div class="card t-card" data-name="T267" data-numbers="2,6,7">
+					<img src="T267.svg" alt="T267">
+					<div class="name">T267</div>
+				</div>
+				<!-- Row 7 -->
+				<div class="card f-card" data-name="F124-257-236-456-135-167-347" data-lines="124,257,236,456,135,167,347">
+					<img src="F124-257-236-456-135-167-347.svg" alt="F124">
+					<div class="name">F124</div>
+				</div>
+				<div class="card t-card" data-name="T236" data-numbers="2,3,6">
+					<img src="T236.svg" alt="T236">
+					<div class="name">T236</div>
+				</div>
+				<div class="card f-card" data-name="F127-236-134-245-156-467-357" data-lines="127,236,134,245,156,467,357">
+					<img src="F127-236-134-245-156-467-357.svg" alt="F127">
+					<div class="name">F127</div>
+				</div>
+				<div class="card t-card" data-name="T357" data-numbers="3,5,7">
+					<img src="T357.svg" alt="T357">
+					<div class="name">T357</div>
+				</div>
+				<div class="card t-card" data-name="T124" data-numbers="1,2,4">
+					<img src="T124.svg" alt="T124">
+					<div class="name">T124</div>
+				</div>
+				<!-- Row 8 -->
+				<div class="card t-card" data-name="T256" data-numbers="2,5,6">
+					<img src="T256.svg" alt="T256">
+					<div class="name">T256</div>
+				</div>
+				<div class="card f-card" data-name="F135-127-234-146-457-256-367" data-lines="135,127,234,146,457,256,367">
+					<img src="F135-127-234-146-457-256-367.svg" alt="F135">
+					<div class="name">F135</div>
+				</div>
+				<div class="card t-card" data-name="T234" data-numbers="2,3,4">
+					<img src="T234.svg" alt="T234">
+					<div class="name">T234</div>
+				</div>
+				<div class="card f-card" data-name="F145-126-137-234-356-467-257" data-lines="145,126,137,234,356,467,257">
+					<img src="F145-126-137-234-356-467-257.svg" alt="F145">
+					<div class="name">F145</div>
+				</div>
+				<div class="card t-card" data-name="T137" data-numbers="1,3,7">
+					<img src="T137.svg" alt="T137">
+					<div class="name">T137</div>
+				</div>
+				<!-- Row 9 -->
+				<div class="card f-card" data-name="F136-235-347-246-145-567-127" data-lines="136,235,347,246,145,567,127">
+					<img src="F136-235-347-246-145-567-127.svg" alt="F136">
+					<div class="name">F136</div>
+				</div>
+				<div class="card t-card" data-name="T136" data-numbers="1,3,6">
+					<img src="T136.svg" alt="T136">
+					<div class="name">T136</div>
+				</div>
+				<div class="card t-card" data-name="T247" data-numbers="2,4,7">
+					<img src="T247.svg" alt="T247">
+					<div class="name">T247</div>
+				</div>
+				<div class="card f-card" data-name="F126-247-235-134-456-367-157" data-lines="126,247,235,134,456,367,157">
+					<img src="F126-247-235-134-456-367-157.svg" alt="F126">
+					<div class="name">F126</div>
+				</div>
+				<div class="card t-card" data-name="T235" data-numbers="2,3,5">
+					<img src="T235.svg" alt="T235">
+					<div class="name">T235</div>
+				</div>
+				<!-- Row 10 -->
+				<div class="card t-card" data-name="T125" data-numbers="1,2,5">
+					<img src="T125.svg" alt="T125">
+					<div class="name">T125</div>
+				</div>
+				<div class="card f-card" data-name="F134-246-237-457-125-356-167" data-lines="134,246,237,457,125,356,167">
+					<img src="F134-246-237-457-125-356-167.svg" alt="F134">
+					<div class="name">F134</div>
+				</div>
+				<div class="card t-card" data-name="T237" data-numbers="2,3,7">
+					<img src="T237.svg" alt="T237">
+					<div class="name">T237</div>
+				</div>
+				<div class="card f-card" data-name="F147-237-135-346-245-126-567" data-lines="147,237,135,346,245,126,567">
+					<img src="F147-237-135-346-245-126-567.svg" alt="F147">
+					<div class="name">F147</div>
+				</div>
+				<div class="card t-card" data-name="T346" data-numbers="3,4,6">
+					<img src="T346.svg" alt="T346">
+					<div class="name">T346</div>
+				</div>
+				
+			</div>
+		</div>
+			
+		<div class="item">
+			<div class="grid middle-center" id="card-grid">
+				<!-- Row 6 -->
+				<div class="card t-card" data-name="T347" data-numbers="3,4,7">
+					<img src="T347.svg" alt="T347">
+					<div class="name">T347</div>
+				</div>
+				<div class="card t-card" data-name="T457" data-numbers="4,5,7">
+					<img src="T457.svg" alt="T457">
+					<div class="name">T457</div>
+				</div>
+				<div class="card t-card" data-name="T156" data-numbers="1,5,6">
+					<img src="T156.svg" alt="T156">
+					<div class="name">T156</div>
+				</div>
+				<div class="card t-card" data-name="T126" data-numbers="1,2,6">
+					<img src="T126.svg" alt="T126">
+					<div class="name">T126</div>
+				</div>
+				<div class="card f-card" data-name="F137-267-346-124-235-156-457" data-lines="137,267,346,124,235,156,457">
+					<img src="F137-267-346-124-235-156-457.svg" alt="F137">
+					<div class="name">F137</div>
+				</div>
+				<!-- Row 2 -->
+				<div class="card t-card" data-name="T157" data-numbers="1,5,7">
+					<img src="T157.svg" alt="T157">
+					<div class="name">T157</div>
+				</div>
+				<div class="card t-card" data-name="T467" data-numbers="4,6,7">
+					<img src="T467.svg" alt="T467">
+					<div class="name">T467</div>
+				</div>
+				<div class="card t-card" data-name="T246" data-numbers="2,4,6">
+					<img src="T246.svg" alt="T246">
+					<div class="name">T246</div>
+				</div>
+				<div class="card f-card" data-name="F157-124-136-467-345-256-237" data-lines="157,124,136,467,345,256,237">
+					<img src="F157-124-136-467-345-256-237.svg" alt="F157">
+					<div class="name">F157</div>
+				</div>
+				<div class="card t-card" data-name="T135" data-numbers="1,3,5">
+					<img src="T135.svg" alt="T135">
+					<div class="name">T135</div>
+				</div>
+				<!-- Row 3 -->
+				<div class="card t-card" data-name="T146" data-numbers="1,4,6">
+					<img src="T146.svg" alt="T146">
+					<div class="name">T146</div>
+				</div>
+				<div class="card t-card" data-name="T567" data-numbers="5,6,7">
+					<img src="T567.svg" alt="T567">
+					<div class="name">T567</div>
+				</div>
+				<div class="card t-card" data-name="T257" data-numbers="2,5,7">
+					<img src="T257.svg" alt="T257">
+					<div class="name">T257</div>
+				</div>
+				<div class="card f-card" data-name="F146-125-345-247-567-236-137" data-lines="146,125,345,247,567,236,137">
+					<img src="F146-125-345-247-567-236-137.svg" alt="F146">
+					<div class="name">F146</div>
+				</div>
+				<div class="card t-card" data-name="T134" data-numbers="1,3,4">
+					<img src="T134.svg" alt="T134">
+					<div class="name">T134</div>
+				</div>
+				<!-- Row 4 -->
+				<div class="card t-card" data-name="T245" data-numbers="2,4,5">
+					<img src="T245.svg" alt="T245">
+					<div class="name">T245</div>
+				</div>
+				<div class="card f-card" data-name="F167-256-123-145-357-346-247" data-lines="167,256,123,145,357,346,247">
+					<img src="F167-256-123-145-357-346-247.svg" alt="F167">
+					<div class="name">F167</div>
+				</div>
+				<div class="card t-card" data-name="T367" data-numbers="3,6,7">
+					<img src="T367.svg" alt="T367">
+					<div class="name">T367</div>
+				</div>
+				<div class="card t-card" data-name="T167" data-numbers="1,6,7">
+					<img src="T167.svg" alt="T167">
+					<div class="name">T167</div>
+				</div>
+				<div class="card t-card" data-name="T145" data-numbers="1,4,5">
+					<img src="T145.svg" alt="T145">
+					<div class="name">T145</div>
+				</div>
+				<!-- Row 5 -->
+				<div class="card t-card" data-name="T356" data-numbers="3,5,6">
+					<img src="T356.svg" alt="T356">
+					<div class="name">T356</div>
+				</div>
+				<div class="card t-card" data-name="T456" data-numbers="4,5,6">
+					<img src="T456.svg" alt="T456">
+					<div class="name">T456</div>
+				</div>
+				<div class="card t-card" data-name="T147" data-numbers="1,4,7">
+					<img src="T147.svg" alt="T147">
+					<div class="name">T147</div>
+				</div>
+				<div class="card t-card" data-name="T127" data-numbers="1,2,7">
+					<img src="T127.svg" alt="T127">
+					<div class="name">T127</div>
+				</div>
+				<div class="card f-card" data-name="F125-234-357-147-456-136-267" data-lines="125,234,357,147,456,136,267">
+					<img src="F125-234-357-147-456-136-267.svg" alt="F125">
+					<div class="name">F125</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+	
+	
+	</div>
+		
+	
+	
+	
+	
+	
+	
+	
+	
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
