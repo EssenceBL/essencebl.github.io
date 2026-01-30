@@ -5,14 +5,14 @@
   <!-- 7x7 Grid (30px horizontal steps, 45px vertical steps) -->
 
   <text x="35" y="55" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(255,0,0)" text-anchor="middle">🌹</text>
-  <text x="65" y="55" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(255,255,0)" text-anchor="middle">🌟</text>
+  <text x="65" y="55" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(255,255,0)" text-anchor="middle">🌞</text>
   <text x="95" y="55" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(0,0,255)" text-anchor="middle">🌊</text>
   <text x="125" y="55" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="155" y="55" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="185" y="55" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="215" y="55" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="35" y="100" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
-  <text x="65" y="100" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(255,255,0)" text-anchor="middle">🌟</text>
+  <text x="65" y="100" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(255,255,0)" text-anchor="middle">🌞</text>
   <text x="95" y="100" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="125" y="100" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="155" y="100" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(0,255,255)" text-anchor="middle">🍜</text>
@@ -24,14 +24,14 @@
   <text x="125" y="145" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="155" y="145" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(0,255,255)" text-anchor="middle">🍜</text>
   <text x="185" y="145" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
-  <text x="215" y="145" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(0,0,0)" text-anchor="middle">🎜</text>
+  <text x="215" y="145" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(0,0,0)" text-anchor="middle">🎺</text>
   <text x="35" y="190" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
-  <text x="65" y="190" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(255,255,0)" text-anchor="middle">🌟</text>
+  <text x="65" y="190" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(255,255,0)" text-anchor="middle">🌞</text>
   <text x="95" y="190" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="125" y="190" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(0,255,0)" text-anchor="middle">🌏</text>
   <text x="155" y="190" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="185" y="190" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
-  <text x="215" y="190" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(0,0,0)" text-anchor="middle">🎜</text>
+  <text x="215" y="190" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(0,0,0)" text-anchor="middle">🎺</text>
   <text x="35" y="235" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(255,0,0)" text-anchor="middle">🌹</text>
   <text x="65" y="235" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="95" y="235" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
@@ -52,6 +52,6 @@
   <text x="125" y="325" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="155" y="325" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(192,192,192)" text-anchor="middle">_</text>
   <text x="185" y="325" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(255,0,255)" text-anchor="middle">🌑</text>
-  <text x="215" y="325" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(0,0,0)" text-anchor="middle">🎜</text>
+  <text x="215" y="325" font-family="Fantasy" font-size="28" font-weight="bold" fill="rgb(0,0,0)" text-anchor="middle">🎺</text>
 
 </svg>

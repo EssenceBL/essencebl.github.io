@@ -6,7 +6,7 @@
   <text x="50" y="175" font-family="Fantasy" font-size="75" font-weight="bold" fill="rgb(255,0,0)" text-anchor="middle">🌹</text>
   
   <!-- Number 2 -->
-  <text x="125" y="175" font-family="Fantasy" font-size="75" font-weight="bold" fill="rgb(255,255,0)" text-anchor="middle">🌟</text>
+  <text x="125" y="175" font-family="Fantasy" font-size="75" font-weight="bold" fill="rgb(255,255,0)" text-anchor="middle">🌞</text>
   
   <!-- Number 3 -->
   <text x="200" y="175" font-family="Fantasy" font-size="75" font-weight="bold" fill="rgb(0,255,255)" text-anchor="middle">🍜</text>
