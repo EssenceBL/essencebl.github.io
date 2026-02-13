@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trinity-Fano Kirkman</title>
+    <style>
+        :root {
+            --t-card-bg: #e6f7ff;
+            --Fano-Card-bg: #ffe6e6;
+            --border-color: #ccc;
+            --spacing: 10px;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+        
+        /* Large screen layout */
+        .t-friends-grid {
+            display: grid;
+            grid-template-rows: repeat(7, auto);
+            gap: var(--spacing);
+        }
+        
+        .t-friends-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--spacing);
+        }
+        
+        .t-friend {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 5px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: white;
+            padding: 8px;
+        }
+        
+        .t-friend-top {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            height: 150px;
+        }
+        
+        .t-card-main {
+            grid-column: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .t-friend-bottom {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            height: 120px;
+        }
+        
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .t-card {
+            background-color: var(--t-card-bg);
+            height: 100%;
+        }
+        
+        .Fano-Card {
+            background-color: var(--Fano-Card-bg);
+            height: 100%;
+        }
+        
+        .card img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        
+        .card-label {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            font-size: 11px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        /* Small screen layout */
+        @media (max-width: 76px) {
+            .t-friends-grid {
+                grid-template-rows: repeat(35, auto);
+            }
+            
+            .t-friends-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .t-friend {
+                grid-template-rows: auto;
+                grid-template-columns: 66.7% 33.3%;
+                height: 120px;
+            }
+            
+            .t-friend-top {
+                grid-template-columns: 1fr;
+                height: 100%;
+            }
+            
+            .t-friend-bottom {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(3, 1fr);
+                height: 100%;
+            }
+            
+            .t-card-main {
+                grid-column: 1;
+                height: 100%;
+            }
+            
+            .card img {
+                max-width: 85%;
+                max-height: 85%;
+            }
+            
+            .card-label {
+                font-size: 10px;
+                padding: 1px 3px;
+            }
+        }
+        
+        /* Responsive image scaling */
+        @media (max-width: 1200px) {
+            .t-friend-top {
+                height: 130px;
+            }
+            
+            .t-friend-bottom {
+                height: 100px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .t-friend-top {
+                height: 110px;
+            }
+            
+            .t-friend-bottom {
+                height: 85px;
+            }
+        }
+        
+        /* Row grouping for large screens */
+        .row-group {
+            display: contents;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+        
+        .legend-t {
+            background-color: var(--t-card-bg);
+        }
+        
+        .legend-f {
+            background-color: var(--Fano-Card-bg);
+        }
+        
+        /* day indicator */
+        .day-indicator {
+            font-size: 9px;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1px 3px;
+            border-radius: 2px;
+        }
+        
+        /* Info panel */
+        .info-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-width: 300px;
+            font-size: 14px;
+        }
+        
+        .info-panel h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .info-panel ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trinity-Fano-Containment</h1>
+        <h1>One Solution To Kirkman's 15 Girls Challenge</h1>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color legend-t"></div>
+                <span>Trinity-Cards (35 types)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-f"></div>
+                <span>Fano-Cards (15 types × 7 days = 105 total roles)</span>
+            </div>
+        </div>
+        
+        <div class="t-friends-grid" id="t-friends-container">
+            <!-- Will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <div class="info-panel" id="info-panel" style="display: none;">
+        <span class="close-btn" onclick="document.getElementById('info-panel').style.display='none'">&times;</span>
+        <h3>Containment Information</h3>
+        <div id="tf-neighbor-details"></div>
+    </div>
+
+    <script>
+        // Define the T-friend rows exactly as specified
+        const tFriendsRows = [
+            ["T234", "T347", "T237", "T156", "T247"],  // Row 1
+            ["T457", "T245", "T345", "T456", "T145"],  // Row 2
+            ["T256", "T567", "T134", "T257", "T267"],  // Row 3
+            ["T367", "T236", "T356", "T136", "T346"],  // Row 4
+            ["T467", "T235", "T135", "T125", "T123"],  // Row 5
+            ["T137", "T157", "T127", "T147", "T167"],  // Row 6
+            ["T126", "T124", "T146", "T357", "T246"]   // Row 7
+        ];
+
+        // Define Fano-Card sets (15 types)
+        const fCardTypes = [
+			"F123-256-357-247-145-346-167",
+			"F124-235-346-457-156-267-137",
+			"F125-234-136-456-357-267-147",
+			"F126-247-235-134-157-456-367",
+			"F127-236-134-245-357-156-467",
+			"F134-237-356-246-125-167-457",
+			"F135-127-234-146-457-256-367",
+			"F136-246-347-145-235-567-127",
+			"F137-125-236-345-567-146-247",
+			"F145-126-137-234-356-467-257",
+			"F146-267-123-347-245-356-157",
+			"F147-245-237-346-135-126-567",
+			"F157-124-345-467-256-136-237",
+			"F156-123-367-147-345-246-257",
+			"F167-257-135-124-456-236-347"
+        ];
+		
+        // Precompute Fano-Card lines for quick lookup
+        const fCardLines = {};
+        fCardTypes.forEach(fCard => {
+            const lines = fCard.substring(1, fCard.length).split(/[-.]/).slice(0);
+            fCardLines[fCard] = lines;
+        });
+
+        // Cache for neighbor relationships
+        const neighborCache = {};
+
+        // Function to extract numbers from Trinity-card name
+        function getTNumbers(tCardName) {
+            // T123 -> "123"
+            return tCardName.substring(1);
+        }
+
+        // Function to find neighbors for a Trinity-card (containment relationship)
+		  
+		
+        function getNeighborFCards(tCardName, dayOffset = 0) {
+            const cacheKey = `${tCardName}-${dayOffset}`;
+            if (neighborCache[cacheKey]) {
+                return neighborCache[cacheKey];
+            }
+            
+            const tNumbers = getTNumbers(tCardName);
+            const neighbors = [];
+            
+            // Find all Fano-Cards that contain this Trinity-card combination
+            fCardTypes.forEach(fCardType => {
+                if (fCardLines[fCardType].includes(tNumbers)) {
+                    // Create 7 days of this Fano-Card type
+                    for (let day = 1; day <= 7; day++) {
+                        const adjustedday = ((day - 1 + dayOffset) % 7) + 1;
+                        neighbors.push({
+                            name: fCardType,
+                            day: adjustedday,
+                            displayName: fCardType.substring(0, 4),
+                            lines: fCardLines[fCardType]
+                        });
+                    }
+                }
+            });
+            
+            // Each Trinity-card should have exactly 3 Fano-Cards as neighbors
+            // We'll distribute the days evenly
+            const selectedNeighbors = [];
+            // For other Trinity-cards, find the 3 containing Fano-Cards
+            const containingFCards = fCardTypes.filter(fCardType => 
+                fCardLines[fCardType].includes(tNumbers)
+            );
+            
+            if (containingFCards.length !== 3) {
+                console.warn(`Trinity-card ${tCardName} has ${containingFCards.length} containing Fano-Cards, expected 3`);
+            }
+            
+            // Assign one day of each containing Fano-Card
+            containingFCards.forEach((fCardType, idx) => {
+                const day = ((idx + dayOffset) % 7) + 1;
+                selectedNeighbors.push({
+                    name: fCardType,
+                    day: day,
+                    displayName: fCardType.substring(0, 4),
+                    lines: fCardLines[fCardType]
+                });
+            });
+            
+            neighborCache[cacheKey] = selectedNeighbors;
+            return selectedNeighbors;
+        }
+
+        // Helper function to find F-day with offset
+        function findFday(fCardType, baseday, offset) {
+            const day = ((baseday - 1 + offset) % 7) + 1;
+            return {
+                name: fCardType,
+                day: day,
+                displayName: fCardType.substring(0, 4),
+                lines: fCardLines[fCardType]
+            };
+        }
+
+        // Create T-friend elements
+        function createTFriend(tCardName, rowIndex, colIndex) {
+            // Use position to determine day offset for distribution
+            const dayOffset = (rowIndex * 5 + colIndex) % 7;
+            const neighborFCards = getNeighborFCards(tCardName, dayOffset);
+            
+            return `
+				<div class="t-friend" data-t-card="${tCardName}" 
+                     data-row="${rowIndex}" data-col="${colIndex}"
+                     onclick="showNeighborInfo('${tCardName}', ${rowIndex}, ${colIndex})">
+                    <div class="t-friend-top">
+                        <div class="empty"></div>
+                        <div class="t-card-main">
+                            <div class="card t-card">
+                                <img src="${tCardName}.svg" alt="${tCardName}">
+                                <!-- <div class="card-label">${tCardName}</div> -->
+                            </div>
+                        </div>
+                        <div class="empty"></div>
+                    </div>
+                    <div class="t-friend-bottom">
+                        ${neighborFCards.map((fCard, idx) => `
+                            <div class="card Fano-Card" 
+                                 data-Fano-Card="${fCard.name}" 
+                                 data-day="${fCard.day}"
+                                 data-lines="${fCard.lines.join(',')}">
+                                <img src="${fCard.name}.svg" alt="${fCard.displayName}">
+                                <!-- <div class="card-label">${fCard.displayName}</div> -->
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Show neighbor information
+        function showNeighborInfo(tCardName, rowIndex, colIndex) {
+            const dayOffset = (rowIndex * 5 + colIndex) % 7;
+            const neighbors = getNeighborFCards(tCardName, dayOffset);
+            const tNumbers = getTNumbers(tCardName);
+            
+            const details = `
+                <p><strong>Trinity-Card:</strong> ${tCardName}</p>
+                <p><strong>Position:</strong> Row ${rowIndex + 1}, Column ${colIndex + 1}</p>
+                <p><strong>Neighbor Fano-Cards (contain ${tNumbers}):</strong></p>
+                <ul>
+                    ${neighbors.map(f => 
+                        `<li><small>Lines: ${f.lines.join(', ')}</small></li>`
+                    ).join('')}
+                </ul>
+                <p><em>Click anywhere to close</em></p>
+            `;
+            
+            document.getElementById('tf-neighbor-details').innerHTML = details;
+            document.getElementById('info-panel').style.display = 'block';
+            
+            // Highlight this T-friend
+            const allTFriends = document.querySelectorAll('.t-friend');
+            allTFriends.forEach(tf => {
+                if (tf.dataset.tCard === tCardName && 
+                    parseInt(tf.dataset.row) === rowIndex && 
+                    parseInt(tf.dataset.col) === colIndex) {
+                    tf.style.boxShadow = '0 0 0 3px #57FF22';
+                } else {
+                    tf.style.boxShadow = 'none';
+                }
+            });
+        }
+
+        // Build the entire grid
+        function buildGrid() {
+            const container = document.getElementById('t-friends-container');
+            let html = '';
+            
+            tFriendsRows.forEach((row, rowIndex) => {
+		
+		 
+		  
+		  
+		 
+	
+                html += `
+	   
+					<h2>Row/ Day ${rowIndex+1}</h2>
+                    <div class="t-friends-row">
+                        ${row.map((tCard, colIndex) => 
+                            createTFriend(tCard, rowIndex, colIndex)
+                        ).join('')}
+		 
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Close info panel when clicking outside
+		 
+        document.addEventListener('click', function(e) {
+            const infoPanel = document.getElementById('info-panel');
+            if (infoPanel.style.display !== 'none' && 
+                !infoPanel.contains(e.target) && 
+                !e.target.closest('.t-friend')) {
+                infoPanel.style.display = 'none';
+                
+                // Remove highlights
+		   
+			 
+		   
+		 
+	   
+			 
+	  
+	   
+	  
+   
+		 
+                const allTFriends = document.querySelectorAll('.t-friend');
+                allTFriends.forEach(tf => {
+                    tf.style.boxShadow = 'none';
+                });
+	  
+            }
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            buildGrid();
+		 
+            
+            // Calculate and display statistics
+            const fCardUsage = {};
+            document.querySelectorAll('.Fano-Card').forEach(fCard => {
+                const key = fCard.dataset.fCard + '-day' + fCard.dataset.day;
+                fCardUsage[key] = (fCardUsage[key] || 0) + 1;
+            });
+            
+            console.log('=== Fano-Card Distribution ===');
+            console.log(`Total Fano-Card displays: ${Object.keys(fCardUsage).length * Object.values(fCardUsage)[0]}`);
+            console.log(`Unique Fano-Card days: ${Object.keys(fCardUsage).length}`);
+            
+            // Verify each Fano-Card type appears exactly 7 times
+            const typeCounts = {};
+            fCardTypes.forEach(fType => {
+                const count = Object.keys(fCardUsage).filter(k => k.startsWith(fType)).length;
+                typeCounts[fType.substring(0,4)] = count;
+            });
+            
+            console.log('Fano-Card type distribution:', typeCounts);
+        });
+    </script>
+</body>
+</html>
